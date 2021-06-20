@@ -1,0 +1,16 @@
+.toggleBtn-container {
+    margin-bottom: 5px;
+    position: fixed;
+    bottom: 1rem;
+}
+
+.toggleBtn {
+    color: #fff !important;
+    background-color: #3f51b5 !important;
+    opacity: 0.3;
+    width: 60%;
+}
+
+.toggleBtn:hover{
+    opacity: 1;
+}

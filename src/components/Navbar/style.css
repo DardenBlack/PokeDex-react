@@ -1,0 +1,41 @@
+.Navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background: #222222;
+    color: white;
+    height: 6rem;
+}
+
+.Navbar p {
+    font-weight: 800;
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+.Search_icon {
+    margin-top: 20px;
+    margin-right: 5px;
+}
+
+.Search_input label {
+    color: white;
+    font-size: 14px;
+}
+
+.Search_input div input{
+    color: white;
+}
+
+.Search_input label.Mui-focused {
+    color: #e6e0e2;
+}
+
+.Search_input .MuiInput-underline:before {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.Search_input .MuiInput-underline:after {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.42);
+}
+

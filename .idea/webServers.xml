@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="2a20b9c7-71e9-4731-8848-c28ae64e88e5" name="https://github.com/DardenBlack/PokeDex-react.git" url="https://github.com/DardenBlack/PokeDex-react.git">
+        <fileTransfer host="https://github.com/DardenBlack/PokeDex-react.git" port="21" accessType="FTPS">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
