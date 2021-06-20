@@ -116,7 +116,7 @@ function App() {
                                 <SearchIcon className="Search_icon"/>
                                 <TextField
                                     onChange={(event) => setFilterName(event.target.value)}
-                                    label="Input Pokemon`s name"
+                                    label="Pokemon`s name"
                                     variants="filled"
                                     className="Search_input"
                                 />
