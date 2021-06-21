@@ -1,3 +1,3 @@
-import Navbar from './Navbar'
+import NavBar from './Navbar'
 
-export default Navbar;
+export default NavBar;

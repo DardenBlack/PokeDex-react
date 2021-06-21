@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {getAllPokemon, getPokemon} from "./services/pokemon";
-import Card from "./components/Card";
-import "./components/Navbar/style.css";
+import NavBar from "./components/Navbar";
 import Pagination from './components/Pagination'
-import './App.css';
-import {Backdrop, Button, ButtonGroup, CircularProgress, TextField} from "@material-ui/core";
-import SearchIcon from '@material-ui/icons/Search';
+import Card from "./components/Card";
 import FilterBar from "./components/FilterBar";
+import {Backdrop, Button, ButtonGroup, CircularProgress} from "@material-ui/core";
+import './App.css';
 
 
 function App() {
@@ -60,7 +59,6 @@ function App() {
         setPokemonData(_pokemonData)
     };
 
-
     const filterPokemon = async() => {
         await localStorage.getItem("type");
         let filtered_pokemons = pokemonData.filter(pokemon => {
@@ -68,6 +66,8 @@ function App() {
             return type.type.name}).includes(localStorage.getItem("type"))});
         setFilteredPokemons(filtered_pokemons);
     };
+
+    const searchTmp = (event) => setFilterName(event.target.value);
 
     const searchedPokemon = filteredPokemons.length !== 0 ?
         filteredPokemons.filter(pokemon => {
@@ -112,7 +112,6 @@ function App() {
         setLoading(false);
     };
 
-
     const paginationNum = [allPerPage, tenPerPage, twentyPerPage, fiftyPerPage];
 
     return (
@@ -122,18 +121,7 @@ function App() {
                     <CircularProgress color="primary"/>
                 </Backdrop> : (
                     <>
-                        <div className="Navbar">
-                            <p>PokeDex</p>
-                            <div className="SearchBar">
-                                <SearchIcon className="Search_icon"/>
-                                <TextField
-                                    onChange={(event) => setFilterName(event.target.value)}
-                                    label="Pokemon`s name"
-                                    variants="filled"
-                                    className="Search_input"
-                                />
-                            </div>
-                        </div>
+                        <NavBar func={searchTmp}/>
                         <FilterBar func={filterPokemon}/>
                         <div className="pgnUp">
                             <Button onClick={prev} variant="contained" color="primary">Prev</Button>

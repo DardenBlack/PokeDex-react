@@ -36,28 +36,5 @@
     .grid-container > * {
         margin-bottom: 10px;
     }
-
-    .Navbar p {
-        margin-top: 20px;
-        font-size: 18px;
-    }
-
-    .Search_input {
-        width: 10em;
-    }
-
-    .Search_input label {
-        color: white;
-        font-size: 12px;
-    }
-
-    .SearchBar {
-        margin-left: 0;
-
-    }
-
-    .Navbar {
-        justify-content: space-between;
-    }
 }
 

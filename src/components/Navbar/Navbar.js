@@ -4,14 +4,15 @@ import {TextField} from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
 
 
-function Navbar() {
+function NavBar(props) {
     return (
-        <div className="Navbar">
+        <div className="NavBar">
             <p>PokeDex</p>
             <div className="SearchBar">
                 <SearchIcon className="Search_icon"/>
                 <TextField
-                    label="Input Pokemon`s name"
+                    onChange={props.func}
+                    label="Pokemon`s name"
                     variants="filled"
                     className="Search_input"
                 />
@@ -21,4 +22,4 @@ function Navbar() {
 }
 
 
-export default Navbar;
+export default NavBar;

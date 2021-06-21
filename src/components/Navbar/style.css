@@ -1,4 +1,4 @@
-.Navbar {
+.NavBar {
     display: flex;
     justify-content: space-between;
     padding: 20px;
@@ -7,7 +7,7 @@
     height: 6rem;
 }
 
-.Navbar p {
+.NavBar p {
     font-weight: 800;
     font-size: 20px;
     margin-top: 15px;
@@ -23,7 +23,7 @@
     font-size: 14px;
 }
 
-.Search_input div input{
+.Search_input div input {
     color: white;
 }
 
@@ -37,5 +37,30 @@
 
 .Search_input .MuiInput-underline:after {
     border-bottom: 1px solid rgba(255, 255, 255, 0.42);
+}
+
+@media screen and (max-width: 450px) {
+    .NavBar {
+        justify-content: space-between;
+    }
+
+    .NavBar p {
+        margin-top: 20px;
+        font-size: 18px;
+    }
+
+    .Search_input {
+        width: 10em;
+    }
+
+    .Search_input label {
+        color: white;
+        font-size: 12px;
+    }
+
+    .SearchBar {
+        margin-left: 0;
+
+    }
 }
 
