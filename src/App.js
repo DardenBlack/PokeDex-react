@@ -14,13 +14,13 @@ function App() {
     const [nextUrl, setNextUrl] = useState('');
     const [prevUrl, setPrevUrl] = useState('');
     const [loading, setLoading] = useState(true);
+    const [filteredPokemons, setFilteredPokemons] = useState([]);
     const [filterName, setFilterName] = useState('');
-    const [filterType,, setFilterType] = useState('');
     const initialUrl = 'https://pokeapi.co/api/v2/pokemon?limit=1118';
-
 
     useEffect(() => {
         async function fetchData() {
+           localStorage.clear();
             let response = await getAllPokemon(initialUrl);
             setNextUrl(response.next);
             setPrevUrl(response.previous);
@@ -60,15 +60,24 @@ function App() {
         setPokemonData(_pokemonData)
     };
 
-    const searchedPokemons = pokemonData.filter(pokemon => {
-        return pokemon.name.toLowerCase().includes(filterName.toLowerCase())
-    });
 
-    const filteredPokemon = pokemonData.filter(pokemon => {
-        /**/
-    });
+    const filterPokemon = async() => {
+        await localStorage.getItem("type");
+        let filtered_pokemons = pokemonData.filter(pokemon => {
+        return pokemon.types.map(type => {
+            return type.type.name}).includes(localStorage.getItem("type"))});
+        setFilteredPokemons(filtered_pokemons);
+    };
+
+    const searchedPokemon = filteredPokemons.length !== 0 ?
+        filteredPokemons.filter(pokemon => {
+            return pokemon.name.toLowerCase().includes(filterName.toLowerCase())})
+        :
+        pokemonData.filter(pokemon => {
+            return pokemon.name.toLowerCase().includes(filterName.toLowerCase())});
 
     const tenPerPage = async () => {
+        setFilteredPokemons([]);
         let data = await getAllPokemon('https://pokeapi.co/api/v2/pokemon?limit=10');
         await loadingPokemon(data.results);
         setNextUrl(data.next);
@@ -77,6 +86,7 @@ function App() {
     };
 
     const twentyPerPage = async () => {
+        setFilteredPokemons([]);
         let data = await getAllPokemon('https://pokeapi.co/api/v2/pokemon?limit=20');
         await loadingPokemon(data.results);
         setNextUrl(data.next);
@@ -85,6 +95,7 @@ function App() {
     };
 
     const fiftyPerPage = async () => {
+        setFilteredPokemons([]);
         let data = await getAllPokemon('https://pokeapi.co/api/v2/pokemon?limit=50');
         await loadingPokemon(data.results);
         setNextUrl(data.next);
@@ -93,6 +104,7 @@ function App() {
     };
 
     const allPerPage = async () => {
+        setFilteredPokemons([]);
         let data = await getAllPokemon('https://pokeapi.co/api/v2/pokemon?limit=1118');
         await loadingPokemon(data.results);
         setNextUrl(false);
@@ -101,13 +113,13 @@ function App() {
     };
 
 
-    const paginationNum = [tenPerPage, twentyPerPage, fiftyPerPage, allPerPage];
+    const paginationNum = [allPerPage, tenPerPage, twentyPerPage, fiftyPerPage];
 
     return (
         <div>
             {
                 loading ? <Backdrop open>
-                    <CircularProgress color="white"/>
+                    <CircularProgress color="primary"/>
                 </Backdrop> : (
                     <>
                         <div className="Navbar">
@@ -122,23 +134,24 @@ function App() {
                                 />
                             </div>
                         </div>
-                        <FilterBar/>
+                        <FilterBar func={filterPokemon}/>
                         <div className="pgnUp">
                             <Button onClick={prev} variant="contained" color="primary">Prev</Button>
                             <Pagination idx={paginationNum}/>
                             <Button onClick={next} variant="contained" color="primary">Next</Button>
                         </div>
                         <div className="grid-container">
-                            {
-                                searchedPokemons.map((pokemon, i) => {
+                            {filteredPokemons.length !== 0 ? filteredPokemons.map((pokemon, i) => {
+                                return <Card pokemon={pokemon} key={i}/>;}) :
+                                searchedPokemon.map((pokemon, i) => {
                                     return <Card pokemon={pokemon} key={i}/>;
-                                })
-                            }
+                                })}
                         </div>
                         <ButtonGroup className="btn" disableElevation variant="contained" color="primary">
                             <Button onClick={prev}>Prev</Button>
                             <Button onClick={next}>Next</Button>
                         </ButtonGroup>
+
                     </>
                 )
             }

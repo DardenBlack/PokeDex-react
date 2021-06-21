@@ -12,7 +12,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 
 function Pagination(props) {
-    const options = ["10 pokemon", "20 pokemon", "50 pokemon", "All pokemon"];
+    const options = ["All pokemon", "10 pokemon", "20 pokemon", "50 pokemon"];
 
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);

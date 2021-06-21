@@ -1,3 +1,7 @@
 .paginationBar {
     margin: 5px;
 }
+
+.radio-group > * {
+    margin-left: 1px !important;
+}

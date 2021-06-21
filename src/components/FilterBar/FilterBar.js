@@ -24,11 +24,8 @@ export default function FilterBar(props) {
     const classes = useStyles();
     const [state, setState] = React.useState({left: false});
 
-    const [value, setValue] = React.useState('');
-
     const handleChange = (event) => {
-        setValue(event.target.value);
-        console.log(value);
+        localStorage.setItem('type', event.target.value);
     };
 
     const toggleDrawer = (anchor, open) => (event) => {
@@ -51,26 +48,26 @@ export default function FilterBar(props) {
             <List>
                 <FormControl component="fieldset">
                     <FormLabel component="legend">Choose pokemon type you would like filter by:</FormLabel>
-                    <RadioGroup aria-label="type" name="type" value={value} onChange={handleChange}>
-                        <FormControlLabel value="bug" control={<Radio />} label="Bug" />
-                        <FormControlLabel value="dragon" control={<Radio />} label="Dragon" />
-                        <FormControlLabel value="fairy" control={<Radio />} label="Fairy" />
-                        <FormControlLabel value="fire" control={<Radio />} label="Fire" />
-                        <FormControlLabel value="ghost" control={<Radio />} label="Ghost" />
-                        <FormControlLabel value="ground" control={<Radio />} label="Ground" />
-                        <FormControlLabel value="normal" control={<Radio />} label="Normal" />
-                        <FormControlLabel value="psychic" control={<Radio />} label="Psychic" />
-                        <FormControlLabel value="steel" control={<Radio />} label="Steel" />
-                        <FormControlLabel value="dark" control={<Radio />} label="Dark" />
-                        <FormControlLabel value="electric" control={<Radio />} label="Electric" />
-                        <FormControlLabel value="fighting" control={<Radio />} label="Fighting" />
-                        <FormControlLabel value="flying" control={<Radio />} label="Flying" />
-                        <FormControlLabel value="grass" control={<Radio />} label="Grass" />
-                        <FormControlLabel value="ice" control={<Radio />} label="Ice" />
-                        <FormControlLabel value="poison" control={<Radio />} label="Poison" />
-                        <FormControlLabel value="rock" control={<Radio />} label="Rock" />
-                        <FormControlLabel value="water" control={<Radio />} label="Water" />
-                        <FormControlLabel value={null} control={<Radio />} label="Reset" />
+                    <RadioGroup className="radio-group" name="type" onChange={handleChange}>
+                        <FormControlLabel value="bug" control={<Radio />} label="Bug" onClick={props.func}/>
+                        <FormControlLabel value="dragon" control={<Radio />} label="Dragon" onClick={props.func}/>
+                        <FormControlLabel value="fairy" control={<Radio />} label="Fairy" onClick={props.func}/>
+                        <FormControlLabel value="fire" control={<Radio />} label="Fire" onClick={props.func}/>
+                        <FormControlLabel value="ghost" control={<Radio />} label="Ghost" onClick={props.func}/>
+                        <FormControlLabel value="ground" control={<Radio />} label="Ground" onClick={props.func}/>
+                        <FormControlLabel value="normal" control={<Radio />} label="Normal" onClick={props.func}/>
+                        <FormControlLabel value="psychic" control={<Radio />} label="Psychic"  onClick={props.func}/>
+                        <FormControlLabel value="steel" control={<Radio />} label="Steel" onClick={props.func}/>
+                        <FormControlLabel value="dark" control={<Radio />} label="Dark" onClick={props.func} />
+                        <FormControlLabel value="electric" control={<Radio />} label="Electric" onClick={props.func}/>
+                        <FormControlLabel value="fighting" control={<Radio />} label="Fighting" onClick={props.func}/>
+                        <FormControlLabel value="flying" control={<Radio />} label="Flying" onClick={props.func}/>
+                        <FormControlLabel value="grass" control={<Radio />} label="Grass" onClick={props.func}/>
+                        <FormControlLabel value="ice" control={<Radio />} label="Ice" onClick={props.func}/>
+                        <FormControlLabel value="poison" control={<Radio />} label="Poison" onClick={props.func}/>
+                        <FormControlLabel value="rock" control={<Radio />} label="Rock" onClick={props.func}/>
+                        <FormControlLabel value="water" control={<Radio />} label="Water" onClick={props.func}/>
+                        <FormControlLabel value="" control={<Radio />} label="Reset" onClick={props.func}/>
                     </RadioGroup>
                 </FormControl>
             </List>

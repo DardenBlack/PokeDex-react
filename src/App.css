@@ -17,8 +17,44 @@
 }
 
 .pgnUp {
-  display: flex;
-  justify-content: center;
-  padding: 5px;
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+.MuiCircularProgress-colorPrimary {
+    color: white !important;
+}
+
+@media screen and (max-width: 450px) {
+    .grid-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+    }
+
+    .Navbar p {
+        margin-top: 20px;
+        font-size: 18px;
+    }
+
+    .Search_input {
+        width: 10em;
+    }
+
+    .Search_input label {
+        color: white;
+        font-size: 12px;
+    }
+
+    .SearchBar {
+        margin-left: 0;
+
+    }
+
+    .Navbar{
+        justify-content: space-between ;
+    }
 }
 
