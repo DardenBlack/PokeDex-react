@@ -3,8 +3,7 @@ p {
 }
 
 .Card {
-    background: white;
-    border-radius: 10px;
+    perspective: 1000px;
 }
 
 .Card_img {
@@ -34,6 +33,19 @@ p {
     margin-left: 10px;
 }
 
+.CardStats_title {
+    font-weight: 800;
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.Card_stats {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+}
+
 .Card_data {
     padding-bottom: 10px;
 }
@@ -41,3 +53,40 @@ p {
 .Card_data .title {
     font-weight: 700;
 }
+
+/*3D-card*/
+.FrontFace, .BackFace {
+    transition: transform 1s;
+    backface-visibility: hidden;
+    -webkit-transition: transform 1s;
+    -webkit-backface-visibility: hidden;
+}
+
+.FrontFace{
+    background: white;
+    border-radius: 10px;
+}
+
+.BackFace {
+    color: white;
+    background-color: #222222;
+    border-radius: 10px;
+
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 10px 0 10px;
+    -webkit-transform: rotateY(180deg);
+}
+
+.Card:hover .FrontFace{
+    -webkit-transform: rotateY(180deg) ;
+}
+
+.Card:hover .BackFace{
+    -webkit-transform: rotateY(360deg);
+}
+

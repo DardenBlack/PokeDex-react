@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {getAllPokemon, getPokemon} from "./services/pokemon";
+import {getAllPokemon} from "./services/getPokemon";
 import NavBar from "./components/Navbar";
 import Pagination from './components/Pagination'
 import Card from "./components/Card";
@@ -54,7 +54,7 @@ function App() {
 
     const loadingPokemon = async (data) => {
         let _pokemonData = await Promise.all(data.map(async pokemon => {
-            let pokemonRecord = await getPokemon(pokemon.url);
+            let pokemonRecord = await getAllPokemon(pokemon.url);
             return pokemonRecord
         }));
 
@@ -120,6 +120,7 @@ function App() {
         setFilteredPokemons([]);
         let data = await getAllPokemon('https://pokeapi.co/api/v2/pokemon?limit=1118');
         await loadingPokemon(data.results);
+        await filterPokemon();
         setNextUrl(false);
         setPrevUrl(false);
         setLoading(false);
@@ -144,10 +145,10 @@ function App() {
                         <div className="grid-container">
                             {localStorage.getItem("type") != null && localStorage.getItem("type") !== '' ?
                                 filteredPokemons.map((pokemon, i) => {
-                                    return <Card pokemon={pokemon} key={i}/>;
+                                    return <Card pokemon={pokemon} key={'.'+ i}/>;
                                 }) :
                                 searchedPokemon.map((pokemon, i) => {
-                                    return <Card pokemon={pokemon} key={i}/>;
+                                    return <Card pokemon={pokemon} key={'.'+ i}/>;
                                 })}
                         </div>
                         <ButtonGroup className="btn" disableElevation variant="contained" color="primary">

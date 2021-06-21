@@ -53,7 +53,7 @@ function Pagination(props) {
                         <ArrowDropDownIcon/>
                     </Button>
                 </ButtonGroup>
-                <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+                <Popper style={{zIndex: 9999}} open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
                     {({TransitionProps, placement}) => (
                         <Grow
                             {...TransitionProps}
