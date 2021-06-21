@@ -19,7 +19,7 @@ function App() {
 
     useEffect(() => {
         async function fetchData() {
-           localStorage.clear();
+            localStorage.clear();
             let response = await getAllPokemon(initialUrl);
             setNextUrl(response.next);
             setPrevUrl(response.previous);
@@ -35,6 +35,7 @@ function App() {
         setLoading(true);
         let data = await getAllPokemon(nextUrl);
         await loadingPokemon(data.results);
+        await filterPokemon();
         setNextUrl(data.next);
         setPrevUrl(data.previous);
         setLoading(false);
@@ -45,6 +46,7 @@ function App() {
         setLoading(true);
         let data = await getAllPokemon(prevUrl);
         await loadingPokemon(data.results);
+        await filterPokemon();
         setNextUrl(data.next);
         setPrevUrl(data.previous);
         setLoading(false);
@@ -59,27 +61,36 @@ function App() {
         setPokemonData(_pokemonData)
     };
 
-    const filterPokemon = async() => {
+    const filterPokemon = async () => {
         await localStorage.getItem("type");
         let filtered_pokemons = pokemonData.filter(pokemon => {
-        return pokemon.types.map(type => {
-            return type.type.name}).includes(localStorage.getItem("type"))});
+            return pokemon.types.map(type => {
+                return type.type.name
+            }).includes(localStorage.getItem("type"))
+        });
+
         setFilteredPokemons(filtered_pokemons);
     };
 
-    const searchTmp = (event) => setFilterName(event.target.value);
+    const searchTmp = (event) => {
+        setFilterName(event.target.value);
+        localStorage.clear();
+    };
 
     const searchedPokemon = filteredPokemons.length !== 0 ?
         filteredPokemons.filter(pokemon => {
-            return pokemon.name.toLowerCase().includes(filterName.toLowerCase())})
+            return pokemon.name.toLowerCase().includes(filterName.toLowerCase())
+        })
         :
         pokemonData.filter(pokemon => {
-            return pokemon.name.toLowerCase().includes(filterName.toLowerCase())});
+            return pokemon.name.toLowerCase().includes(filterName.toLowerCase())
+        });
 
     const tenPerPage = async () => {
         setFilteredPokemons([]);
         let data = await getAllPokemon('https://pokeapi.co/api/v2/pokemon?limit=10');
         await loadingPokemon(data.results);
+        await filterPokemon();
         setNextUrl(data.next);
         setPrevUrl(data.previous);
         setLoading(false);
@@ -89,6 +100,7 @@ function App() {
         setFilteredPokemons([]);
         let data = await getAllPokemon('https://pokeapi.co/api/v2/pokemon?limit=20');
         await loadingPokemon(data.results);
+        await filterPokemon();
         setNextUrl(data.next);
         setPrevUrl(data.previous);
         setLoading(false);
@@ -98,6 +110,7 @@ function App() {
         setFilteredPokemons([]);
         let data = await getAllPokemon('https://pokeapi.co/api/v2/pokemon?limit=50');
         await loadingPokemon(data.results);
+        await filterPokemon();
         setNextUrl(data.next);
         setPrevUrl(data.previous);
         setLoading(false);
@@ -129,8 +142,10 @@ function App() {
                             <Button onClick={next} variant="contained" color="primary">Next</Button>
                         </div>
                         <div className="grid-container">
-                            {filteredPokemons.length !== 0 ? filteredPokemons.map((pokemon, i) => {
-                                return <Card pokemon={pokemon} key={i}/>;}) :
+                            {localStorage.getItem("type") != null && localStorage.getItem("type") !== '' ?
+                                filteredPokemons.map((pokemon, i) => {
+                                    return <Card pokemon={pokemon} key={i}/>;
+                                }) :
                                 searchedPokemon.map((pokemon, i) => {
                                     return <Card pokemon={pokemon} key={i}/>;
                                 })}
@@ -139,7 +154,6 @@ function App() {
                             <Button onClick={prev}>Prev</Button>
                             <Button onClick={next}>Next</Button>
                         </ButtonGroup>
-
                     </>
                 )
             }

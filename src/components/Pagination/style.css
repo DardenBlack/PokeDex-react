@@ -2,6 +2,6 @@
     margin: 5px;
 }
 
-.radio-group > * {
-    margin-left: 1px !important;
+#split-button-menu {
+    z-index: 99;
 }

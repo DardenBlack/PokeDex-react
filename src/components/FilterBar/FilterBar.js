@@ -68,7 +68,7 @@ export default function FilterBar(props) {
                         <FormControlLabel value="poison" control={<Radio />} label="Poison" onClick={props.func}/>
                         <FormControlLabel value="rock" control={<Radio />} label="Rock" onClick={props.func}/>
                         <FormControlLabel value="water" control={<Radio />} label="Water" onClick={props.func}/>
-                        <FormControlLabel value="" control={<Radio />} label="Reset" onClick={props.func}/>
+                        <FormControlLabel value = "" control={<Radio />} label="Reset" onClick={props.func}/>
                     </RadioGroup>
                 </FormControl>
             </List>
